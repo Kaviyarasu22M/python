@@ -1,0 +1,8 @@
+a=(1,2,2,2,3,4,"kavin",True)
+print(type(a),"initial:",a)
+b=a.count(2)
+print("count:",b)
+c=a.index(4)
+print("index:",c)
+m=list(a)
+print("list:",m)
