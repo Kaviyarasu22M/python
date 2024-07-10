@@ -1,0 +1,36 @@
+import numpy as np
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Load the Iris dataset
+iris = datasets.load_iris()
+X = iris.data
+y = iris.target
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Standardize the features
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Create a Random Forest classifier
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+
+# Train the classifier
+rf.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = rf.predict(X_test)
+
+# Evaluate the classifier
+accuracy = accuracy_score(y_test, y_pred)
+print(f'Accuracy: {accuracy:.2f}')
+
+# Print the first 5 predictions and their actual values
+print("First 5 Predictions:", y_pred[:5])
+print("First 5 Actual values:", y_test[:5])
